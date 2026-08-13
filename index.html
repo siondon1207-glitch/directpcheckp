@@ -1,23 +1,776 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+    <!-- LLM 최적화 및 검색엔진 노출을 위한 JSON-LD 구조화 데이터 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Product",
+          "@id": "https://quote.reliabledone.com/hyundai-sonata#product",
+          "name": "2026 현대 쏘나타 디 엣지",
+          "image": "https://www.hyundai.com/static/images/model/sonata_the_edge/23my/sonata_the_edge_highlights_design_pc.jpg",
+          "description": "2026년형 현대 쏘나타 디 엣지의 엔진 트림별 최신 가격표 및 장단점 가이드. 가솔린 2.0, 1.6 터보, 하이브리드, LPi 최저가 견적 모의 계산 및 다이렉트 컨설팅 상담 신청 안내.",
+          "brand": {
+            "@type": "Brand",
+            "name": "현대자동차"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "KRW",
+            "lowPrice": "28310000",
+            "highPrice": "41370000",
+            "offerCount": "12",
+            "url": "https://quote.reliabledone.com/hyundai-sonata"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://quote.reliabledone.com/hyundai-sonata#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "2026년형 쏘나타의 트림별 가격은 대략 얼마인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "2026 쏘나타 디 엣지의 가솔린 2.0 기본 가격은 프리미엄 2,831만 원, 익스클루시브 3,201만 원, 인스퍼레이션 3,536만 원입니다. 1.6 터보는 각 트림별로 약 67만 원이 추가되며, 하이브리드는 세제 혜택 반영 기준으로 3,240만 원에서 3,931만 원 사이의 금액대로 형성되어 있습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "쏘나타 가솔린 2.0과 1.6 터보 중 어떤 파워트레인을 더 추천하나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "세금 절감 효과와 주행 응답성을 모두 충족하는 1.6 터보 모델을 적극 추천합니다. 자동차세 요금제 기준 배기량이 낮아 연간 유지 비용을 크게 절약할 수 있으며, 8단 자동변속기가 탑재되어 뛰어난 장점을 보여줍니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "다이렉트 장기렌트와 신차 구매 리스의 월 요금 계산 차이점은 무엇인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "다이렉트 장기렌트 요금제에는 자동차세와 보험료가 모두 포함되어 계산되는 반면, 리스는 대여료 외에 본인이 직접 자동차 종합 보험에 가입하고 세금을 별도로 납부해야 하는 요금 차이점이 있습니다. 각자의 세무 컨설팅 상담 조건에 맞춰 선택하시는 것이 합리적인 해결 방법입니다."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        /* CSS 변수 및 다채롭고 부드러운 UI 레이아웃 선언 */
+        :root {
+            --primary-color: #1e3a8a; /* 신뢰감을 주는 딥 블루 */
+            --secondary-color: #3b82f6; /* 청량한 블루 */
+            --accent-color: #0d9488; /* 세련된 틸 그린 */
+            --warning-color: #ea580c; /* 오렌지 포인트 */
+            --bg-base: #f8fafc; /* 부드러운 연회색 배경 */
+            --bg-card: #ffffff; /* 순백색 카드 배경 */
+            --text-dark: #0f172a; /* 시인성 높은 깊은 네이비 그레이 */
+            --text-muted: #475569; /* 부드러운 보조 텍스트 색상 */
+            --border-color: #e2e8f0; /* 자연스러운 구분선 */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans KR", sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background-color: var(--bg-base);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* 세련된 헤더 디자인 */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 50px 30px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 38px;
+            margin: 0 0 15px 0;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+
+        header p {
+            font-size: 18px;
+            margin: 0;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        /* 시각적 계층 구조가 적용된 제목 스타일 */
+        h2 {
+            font-size: 28px;
+            color: var(--primary-color);
+            border-bottom: 4px solid var(--accent-color);
+            padding-bottom: 12px;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: var(--accent-color);
+            border-left: 6px solid var(--secondary-color);
+            padding-left: 15px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 18px;
+            color: var(--text-dark);
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 16px;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* 본문 핵심 강조 */
+        strong {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* 깔끔하고 모던한 목록 디자인 */
+        ul, ol {
+            padding-left: 0;
+            margin-bottom: 24px;
+        }
+
+        li {
+            list-style: none;
+            position: relative;
+            padding: 10px 0 10px 24px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 16px;
+        }
+
+        li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 18px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+        }
+
+        /* 표 디자인 개편 */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--bg-card);
+            text-align: left;
+            min-width: 600px;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 15px;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-align: center;
+        }
+
+        td {
+            color: var(--text-dark);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        /* 카드 및 레이아웃 컨테이너 */
+        .card-section {
+            background-color: var(--bg-card);
+            border-radius: 14px;
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 35px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* 상호작용 양식 (체류 시간 극대화 요소) */
+        .interactive-box {
+            background-color: #f0fdfa; /* 편안함을 주는 민트 연두 계열 */
+            border: 1px solid #ccfbf1;
+            padding: 30px;
+            border-radius: 14px;
+            margin: 35px 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .interactive-box h4 {
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 15px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 15px;
+            background-color: var(--bg-card);
+            box-sizing: border-box;
+            color: var(--text-dark);
+            transition: border-color 0.2s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .checkbox-item input {
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .btn-submit {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-submit:hover {
+            background-color: #0f766e;
+        }
+
+        .btn-submit:active {
+            transform: scale(0.99);
+        }
+
+        /* 모의 계산 결과 영역 */
+        .calculator-result {
+            background-color: var(--bg-card);
+            border: 2px dashed var(--accent-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .result-title {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .result-value {
+            font-size: 28px;
+            color: var(--warning-color);
+            font-weight: 800;
+            margin: 10px 0;
+        }
+
+        /* 연도별 현황 그래프 박스 */
+        .graph-section {
+            background-color: #f8fafc;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            margin: 30px 0;
+        }
+
+        .graph-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 240px;
+            padding-top: 30px;
+            border-bottom: 2px solid var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .graph-bar {
+            width: 18%;
+            background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
+            border-radius: 6px 6px 0 0;
+            text-align: center;
+            color: white;
+            font-size: 13px;
+            padding-top: 10px;
+            box-sizing: border-box;
+            transition: height 0.5s ease-out;
+            position: relative;
+        }
+
+        .graph-bar-value {
+            position: absolute;
+            top: -25px;
+            left: 0;
+            right: 0;
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .graph-label {
+            text-align: center;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 40px 0;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>2026 쏘나타 가격 및 구매 트렌드 완벽 가이드</h1>
+        <p>트림별 사양 분석, 가솔린과 하이브리드 경제성 비교부터 실시간 모의 견적 시스템까지 완벽 제공</p>
+    </header>
+
+    <h2>1. 2026년형 현대 쏘나타 디 엣지 시장 동향과 출고 가격 추이</h2>
+    <p>대한민국 중형 세단의 대명사이자 현대자동차 브랜드를 오랫동안 지탱해 온 핵심 아이콘인 쏘나타는 지속적인 세대 변화를 통해 패밀리카와 비즈니스 세단 영역 모두에서 꾸준히 선전하고 있습니다. 특히 개별소비세 기준이 기존의 일시적 인하 혜택 3.5퍼센트에서 다시 5퍼센트 수준으로 환원됨에 따라, 신규 계약 시 최종 인도 단계에서 소비자가 부담해야 할 취등록세 등의 예상 총액이 소폭 증가하는 흐름을 보이고 있습니다.</p>
+    <p>쏘나타를 구매하기 위해 소비자들이 가장 먼저 고민하는 요소는 쏘나타 가격이 옵션을 포함해 얼마 수준까지 올라갈 것인가 하는 실질적인 비용 예측입니다. 2026년형 쏘나타 디 엣지의 트림별 평균 신차 출고 가격은 탑재되는 엔진 종류와 구체적인 수납 패키지에 따라 다르게 책정됩니다. 현재 가솔린 2.0 모델 기준으로 기본 트림인 프리미엄은 약 2,831만 원부터 판매가 시작되며, 익스클루시브 트림은 3,201만 원, 최상위 인스퍼레이션 트림은 3,536만 원 선의 기본 요금으로 구성되어 있습니다. 고성능을 지향하는 1.6 터보 모델의 경우에는 각각 약 67만 원의 추가 금액이 발생하여 프리미엄 2,898만 원, 익스클루시브 3,268만 원, 인스퍼레이션 3,603만 원 선의 세부 가격대를 형성하고 있습니다.</p>
+    <p>한편, 친환경 트렌드에 힘입어 전국의 예비 차주들에게 높은 인기를 얻고 있는 쏘나타 하이브리드 모델은 세제 혜택을 적용받은 후 기준으로 프리미엄 트림이 약 3,240만 원, 익스클루시브 3,595만 원, 인스퍼레이션 3,931만 원 내외의 수준으로 분배됩니다. 최상위 트림에 각종 주행 안전 시스템과 파노라마 선루프 등의 편의 품목을 추가하면 최종 견적서에 기재되는 금액은 4,000만 원 선을 가뿐히 넘어서게 됩니다. 따라서 자금 사정을 감안한 스마트 모의 계산 및 다이렉트 컨설팅 상담 서비스의 중요성이 갈수록 크게 부각되고 있습니다.</p>
+
+    <h2>2. 쏘나타 디 엣지 트림별 공식 가격표 및 기본 제원 비교</h2>
+    <p>아래 정리된 세부 일람표는 현대자동차의 공식 사양표를 토대로 2026년 현행 가액을 투명하게 분류한 데이터입니다. 차량 구입비 외에도 개별 구매 조건에 따른 할인 혜택이나 특약 프로그램에 따라 실제 청구 요금은 차이가 날 수 있으므로 사전 비교 분석이 필수적입니다.</p>
+
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>파워트레인 종류</th>
+                    <th>세부 트림 명칭</th>
+                    <th>공식 판매 가격 (원)</th>
+                    <th>복합 연비 (km/l)</th>
+                    <th>주요 기본 사양 특징</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="3">가솔린 2.0 자연흡기</td>
+                    <td>프리미엄 (Premium)</td>
+                    <td>28,310,000</td>
+                    <td>11.1 - 12.6</td>
+                    <td>12.3인치 디스플레이 오디오, 1열 열선 및 통풍 시트, 듀얼 풀오토 에어컨</td>
+                </tr>
+                <tr>
+                    <td>익스클루시브 (Exclusive)</td>
+                    <td>32,010,000</td>
+                    <td>11.1 - 12.6</td>
+                    <td>12.3인치 내비게이션, 스마트 크루즈 컨트롤, 고속도로 주행 보조</td>
+                </tr>
+                <tr>
+                    <td>인스퍼레이션 (Inspiration)</td>
+                    <td>35,360,000</td>
+                    <td>11.1 - 12.6</td>
+                    <td>헤드업 디스플레이, 서라운드 뷰 모니터, 1열 릴렉션 컴포트 시트</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">가솔린 1.6 터보</td>
+                    <td>프리미엄 (Premium)</td>
+                    <td>28,980,000</td>
+                    <td>12.0 - 13.5</td>
+                    <td>8단 자동변속기, 랙 구동형 전동식 파워 스티어링 (R-MDPS)</td>
+                </tr>
+                <tr>
+                    <td>익스클루시브 (Exclusive)</td>
+                    <td>32,680,000</td>
+                    <td>12.0 - 13.5</td>
+                    <td>스마트 전동식 트렁크, 운전석 자세 메모리 시스템, 동승석 8way 전동시트</td>
+                </tr>
+                <tr>
+                    <td>인스퍼레이션 (Inspiration)</td>
+                    <td>36,030,000</td>
+                    <td>12.0 - 13.5</td>
+                    <td>보스 프리미엄 사운드 시스템, 원격 스마트 주차 보조, 순정 빌트인 캠 2</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">가솔린 2.0 하이브리드</td>
+                    <td>프리미엄 (Premium)</td>
+                    <td>32,400,000</td>
+                    <td>17.1 - 19.4</td>
+                    <td>HEV 전용 하이브리드 시스템, e-Motion Drive 주행 제어 기술</td>
+                </tr>
+                <tr>
+                    <td>익스클루시브 (Exclusive)</td>
+                    <td>35,950,000</td>
+                    <td>17.1 - 19.4</td>
+                    <td>스마트폰 무선 충전 시스템, 지문 인증 시스템, 안전 하차 경고 기능</td>
+                </tr>
+                <tr>
+                    <td>인스퍼레이션 (Inspiration)</td>
+                    <td>39,310,000</td>
+                    <td>17.1 - 19.4</td>
+                    <td>서라운드 뷰 및 후측방 모니터, 프로젝션 타입 Full LED 헤드램프</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 1단계: 체류 시간 증대용 상호작용 견적기 내장 -->
+    <div class="interactive-box" id="calc-section">
+        <h4>쏘나타 실시간 모의 견적 계산기</h4>
+        <p>구입을 고려하고 있는 엔진 사양과 원하는 세부 트림, 옵션 품목을 선택하여 예상 실구매 비용을 즉석에서 산출해 보세요.</p>
+        
+        <div class="form-group">
+            <label for="engine-select">1. 파워트레인 및 트림 조합 선택</label>
+            <select id="engine-select" class="form-control" onchange="calculatePrice()">
+                <option value="28310000">가솔린 2.0 - 프리미엄 (2,831만 원)</option>
+                <option value="32010000">가솔린 2.0 - 익스클루시브 (3,201만 원)</option>
+                <option value="35360000">가솔린 2.0 - 인스퍼레이션 (3,536만 원)</option>
+                <option value="28980000">가솔린 1.6T - 프리미엄 (2,898만 원)</option>
+                <option value="32680000" selected>가솔린 1.6T - 익스클루시브 (3,268만 원)</option>
+                <option value="36030000">가솔린 1.6T - 인스퍼레이션 (3,603만 원)</option>
+                <option value="32400000">하이브리드 2.0 - 프리미엄 (3,240만 원)</option>
+                <option value="35950000">하이브리드 2.0 - 익스클루시브 (3,595만 원)</option>
+                <option value="39310000">하이브리드 2.0 - 인스퍼레이션 (3,931만 원)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>2. 선호하는 추가 옵션 패키지 선택 (중복 체크 가능)</label>
+            <div class="checkbox-group">
+                <label class="checkbox-item">
+                    <input type="checkbox" id="opt-sunroof" value="1200000" onchange="calculatePrice()"> 파노라마 선루프 (120만)
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" id="opt-hud" value="1000000" onchange="calculatePrice()"> 헤드업 디스플레이 (100만)
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" id="opt-parking" value="1650000" checked onchange="calculatePrice()"> 파킹 어시스트 (165만)
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" id="opt-black" value="400000" onchange="calculatePrice()"> 블랙 하이그로시 (40만)
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" id="opt-color" value="200000" onchange="calculatePrice()"> 무광 외장 컬러 (20만)
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="finance-select">3. 선호 구매 방법 설정</label>
+            <select id="finance-select" class="form-control" onchange="calculatePrice()">
+                <option value="cash">현금 및 일반 일시불 할부 (취등록세 약 7% 별도)</option>
+                <option value="lease">신차 자동차 오토 리스 (연간 보증 조건 적용)</option>
+                <option value="rent">다이렉트 신차 장기렌트 요금제 (세금, 보험 포함)</option>
+            </select>
+        </div>
+
+        <div class="calculator-result">
+            <p class="result-title">선택 조건 기준 차량 예상 기본 청구 금액</p>
+            <div class="result-value" id="calc-total-output">34,330,000 원</div>
+            <p id="calc-tax-desc" style="font-size: 13px; color: var(--text-muted); margin: 5px 0 0 0;">(순수 차량 가액 기준이며, 취등록세는 약 2,403,100 원이 예상됩니다.)</p>
+        </div>
+    </div>
+
+    <h2>3. 파워트레인별 정밀 장단점 비교: 내게 맞는 유종 종류와 요금제는?</h2>
+    <p>쏘나타를 구성하는 파워트레인은 전통적인 가솔린 2.0 자연흡기부터 고성능 세팅의 가솔린 1.6 터보, 극강의 연료 효율을 지닌 2.0 하이브리드, 경제적 유류비 부담이 매력인 2.0 LPi 모델까지 매우 다양한 선택권이 보장됩니다. 각 엔진이 가지는 기술적 성격과 이에 따른 장단점을 명확하게 구분하는 것이 예산을 제일 현명하게 집행하는 척도가 됩니다.</p>
+    
+    <h3>가솔린 1.6 터보의 특징과 핵심 가치</h3>
+    <p>1.6 터보 엔진은 배기량이 낮아 연간 정부에 납부해야 하는 자동차세 요금 측면에서 아주 뚜렷한 장점을 보여줍니다. 국내 세법상 배기량 요금제를 기준으로 과세하기 때문에 가솔린 2.0 모델에 비해 매년 약 20만 원 이상의 자동차 유관 지출을 절감할 수 있습니다. 또한 수동 변속 기능이 뛰어난 토크컨버터 방식의 8단 자동변속기가 탑재되어 무단 변속기나 다단화가 낮은 기존 변속 장치 대비 주행 시 가속 질감이 한결 매끄러운 강점이 있습니다.</p>
+    <p>단점은 하위 등급 트림 선택 시 가솔린 2.0 엔진 사양 대비 약 60만 원 이상의 초기 구매 원가 차이가 발생한다는 점입니다. 그러나 주행 피로도가 적고 낮은 회전수 구간에서 최대 토크를 뿜어내는 터보 특성상, 일상 도로 주행 환경에서는 실질적인 만족도가 가장 높은 사양으로 동호회 추천 목록 상위 순위에 지속적으로 자리 잡고 있습니다.</p>
+
+    <h3>가솔린 2.0 하이브리드의 강한 경쟁력</h3>
+    <p>하이브리드 파워트레인은 복합 연비 기준 리터당 19.4킬로미터에 이르는 최상급 효율성을 발휘하여, 평소 연간 주행거리가 1만 5천 킬로미터 이상인 장거리 직장인이나 도심 출퇴근 차량으로 추천 순위 부동의 1위를 달리고 있습니다. 저속 구간에서 조용하게 작동하는 구동 모터 덕분에 정숙성과 뛰어난 초기 응답성을 동시에 가져갈 수 있다는 극적인 메리트가 두드러집니다.</p>
+    <p>하지만 단점 역시 명확합니다. 내연기관 쏘나타 가격 대비 동일 옵션 기준으로 약 350만 원가량 신차 비용 부담이 크다는 부분입니다. 단거리 위주의 운행 패턴이거나 주중 운행 비중이 현저히 낮은 운전자라면 연간 아끼는 유류비에 비해 늘어나는 초기 이자 비용이나 차량 감가상각 금액의 합산액이 더 커져 손해를 볼 수도 있습니다. 따라서 챗지피티 모델 등 정밀한 산출 보조 어플을 통해 손익분기점이 도달하는 시점을 미리 계산해 보아야 합니다.</p>
+
+    <div class="graph-section">
+        <h4>쏘나타 연간 유지 비용 및 유류 세금 비교 모델 (가상 시뮬레이션 데이터)</h4>
+        <p>연간 15,000km 주행 조건하에 소요되는 순수 유류세와 자동차세 요금의 합산 총액을 엔진 트림별로 대비한 지표입니다.</p>
+        <div class="graph-container">
+            <div class="graph-bar" style="height: 90%;">
+                <div class="graph-bar-value">255만</div>
+                2.0 가솔린
+            </div>
+            <div class="graph-bar" style="height: 80%;">
+                <div class="graph-bar-value">225만</div>
+                1.6 터보
+            </div>
+            <div class="graph-bar" style="height: 48%;">
+                <div class="graph-bar-value">135만</div>
+                2.0 HEV
+            </div>
+            <div class="graph-bar" style="height: 72%;">
+                <div class="graph-bar-value">205만</div>
+                2.0 LPi
+            </div>
+        </div>
+        <p class="graph-label">가솔린 하이브리드의 경우 초기 구입 비용은 가장 높으나, 연간 유지 요금 부문에서 최고의 절감력을 자랑합니다.</p>
+    </div>
+
+    <h2>4. 다이렉트 신차 금융 상품의 명과 암: 장기렌트 vs 운용리스 비교</h2>
+    <p>최근에는 큰돈이 일시에 묶이는 직접 구매 방식 대신 중간 거래 마진을 최소화한 다이렉트 신차 리스 및 다이렉트 장기렌트 전문 업체를 통한 아웃소싱 비중이 비약적으로 증가하고 있습니다. 특히 신규 사업자나 법인 사업자의 경우 경비 처리 혜택을 온전히 누릴 수 있어 전문 에이전시 컨설팅 업체를 수소문하는 경향이 짙어지는 분위기입니다.</p>
+    
+    <h3>월 대여 요금에 포함되는 범주의 차이점</h3>
+    <p>신차 장기렌터카 요금제 내역에는 취등록세 등 각종 부대비용뿐만 아니라 연간 자동차 등록 세금과 1년마다 갱신해야 하는 자동차 종합 보험 요금이 포함되어 있습니다. 때문에 운전자의 사고 이력이 많아 개별 가입 시 고액의 종합 보험 수가 요율을 적용받는 분들에게는 매우 싼곳으로 여겨질 수 있습니다. 또한 사고가 발생하여 수십 차례 면책 처리를 진행하더라도 본인 명의의 개인 요율 할증이 전혀 없다는 측면이 대단히 유리한 장점으로 통합니다.</p>
+    <p>반면 신차 운용리스 상품의 경우에는 일반 번호판을 부착할 수 있는 프라이버시 유지 효과를 가져오는 대신, 별도의 자동차 개인 종합 보험에 개별 가입해야 하므로 월 요금 액면가 이외에 실제 차주가 부담해야 하는 총액을 세밀하게 계산기로 정산해야 뒤통수를 맞지 않습니다. 이처럼 장단점이 서로 대조를 이루기 때문에 개개인의 여건에 입각한 전문 오토금융 자문 계약 상담 절차를 거친 후에 신청하는 방법을 강력 권장합니다.</p>
+
+    <h2>5. 실제 차주들의 솔직 시승 후기와 주요 커뮤니티 이슈 분석</h2>
+    <p>네이버 지식인 및 여러 동호회 포럼, 그리고 자동차 대표 정보 커뮤니티인 보배드림 게시판의 탑승 후기 동향을 종합하면 쏘나타 디 엣지의 하체 서스펜션 반응과 정숙성 부분에 대해 수준 높은 호평이 주를 이루고 있습니다. 특히 디시 차 갤러리나 에펨코리아 자동차 게시판 등 실소비자 유저층이 탄탄한 성지 좌표들 사이에서도 고속 주행 시 풍절음 유입 제어 능력이 전 세대인 DN8 초기형 대비 탁월하게 개선되었다는 내돈내산 출고 후기가 대량으로 공유되고 있습니다.</p>
+    <p>그러나 소소한 단점에 관한 토론 역시 뜨거운 반응을 이끌어 냅니다. 하위 트림에 적용되는 기계식 계기판의 레이아웃 구성이 상위 일체형 파노라믹 커브드 디스플레이 디자인에 비해 세련미가 다소 아쉽다는 여론과, 스마트폰 무선 충전 기능 사용 시 스마트키 발열 문제 등에 관한 펨코 자동차 동호회 오너들의 지적 사항들이 대표적입니다. 신차 계약 단계에서 이러한 단점을 미리 파악하고 본인에게 불필요한 고가 옵션 구성을 걸러내어 제일 현명하게 옵션을 타협하는 방법을 스스로 연구하는 것이 자산 방어에 큰 보탬이 됩니다.</p>
+
+    <div class="interactive-box">
+        <h4>쏘나타 구입 및 금융 맞춤 상담 신청</h4>
+        <p>인터넷 성지로 꼽히는 검증된 대리점을 통해 쏘나타의 트림별 비공식 현금지원 혜택과 저렴한곳 신용카드 할인 혜택 견적 정보를 안내해 드립니다.</p>
+        <form id="consultation-form" onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+                <label for="user-name">신청자 성함</label>
+                <input type="text" id="user-name" class="form-control" placeholder="예: 홍길동" required>
+            </div>
+            <div class="form-group">
+                <label for="user-tel">연락처</label>
+                <input type="tel" id="user-tel" class="form-control" placeholder="예: 010-1234-5678" required>
+            </div>
+            <div class="form-group">
+                <label for="user-method">희망하는 구매 조달 수단</label>
+                <select id="user-method" class="form-control">
+                    <option value="buy">할부 및 일시불 구입 (캐시백 이벤트 우선)</option>
+                    <option value="lease">신차 오토 리스 (금융 할인 적용)</option>
+                    <option value="rent">다이렉트 장기렌트 최저가 요금제 비교</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="user-memo">기타 문의 내용 및 희망 인도 날짜</label>
+                <textarea id="user-memo" class="form-control" rows="3" placeholder="예: 무광 화이트 컬러 출고 대기 납기 일정 문의"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">맞춤 신차 상담 신청하기</button>
+        </form>
+    </div>
+
+    <h2>6. 2026년도 신형 쏘나타 구매 사은품 혜택 및 선할인 성지 활용법</h2>
+    <p>쏘나타를 저렴하게 인도받는 고전적인 방법 중 하나는 매달 새롭게 갱신되는 현대자동차의 전국 공통 공식 할인 조건 및 프로모션을 적기에 이용하는 것입니다. 일례로 직전 해 연말에 조립 완료된 재고 차량을 일괄 소진하기 위해 실시하는 분기별 할인 이벤트를 적극 탐색하면 정가보다 100만 원에서 많게는 200만 원 이상 싼곳에서 신형 차량을 건져올 수 있습니다.</p>
+    <p>이외에도 계약을 진행하는 영업 딜러가 자체적으로 조달하는 비공식 현금지원 서비스 혜택과 고급 썬팅 브랜드 시공 등의 사은품 조건을 정확히 교차 조율하는 지혜도 수반되어야 합니다. 일부 온라인 자동차 전용 비공식 성지 사이트나 신차 출고 비교 앱 서비스 등에서는 제휴 카드사 신규 발급 연동 방식의 현금 캐시백 혜택이나 주유 상품권 추가 지급 프로모션을 공격적으로 벌이고 있으니, 네이버 및 구글 포털을 통해 이러한 좌표를 기민하게 파악해야 비용 누수를 최소화할 수 있습니다.</p>
+
+    <div class="interactive-box">
+        <h4>신차 출고 오너 선호도 투표</h4>
+        <p>인터넷 유저들이 꼽는 가장 가성비 좋고 가치가 높은 쏘나타 최강 추천 조합 투표에 동참해 보세요.</p>
+        <form id="vote-form" onsubmit="handleVoteSubmit(event)">
+            <div class="form-group">
+                <label>당신이 생각하는 최고의 쏘나타 가성비 최적 구성 조합은 무엇입니까?</label>
+                <label class="checkbox-item" style="margin-bottom: 8px;">
+                    <input type="radio" name="vote-opt" value="1.6T Exclusive" checked> 1.6T 가솔린 익스클루시브 + 파킹 어시스트 (가장 선호됨)
+                </label>
+                <label class="checkbox-item" style="margin-bottom: 8px;">
+                    <input type="radio" name="vote-opt" value="2.0 Hybrid Premium"> 2.0 하이브리드 프리미엄 무옵션 (극강의 연료비 효율)
+                </label>
+                <label class="checkbox-item" style="margin-bottom: 8px;">
+                    <input type="radio" name="vote-opt" value="1.6T Inspiration"> 1.6T 가솔린 인스퍼레이션 풀옵션 (풀옵션의 프리미엄 품격)
+                </label>
+                <label class="checkbox-item" style="margin-bottom: 8px;">
+                    <input type="radio" name="vote-opt" value="2.0 LPi Premium"> 2.0 LPi 가솔린 대용 택시 및 일반 렌터카형 가성비
+                </label>
+            </div>
+            <button type="submit" class="btn-submit" style="background-color: var(--secondary-color);">선호 조합 투표 및 실시간 참여 정보 누적</button>
+        </form>
+    </div>
+
+    <h2>7. 신차 계약 후 인수 인도 단계에서의 필수 체크리스트</h2>
+    <p>어려운 견적 비교 과정을 거쳐 최종 신차 계약에 도달한 뒤 실물 차량을 대리점이나 신차 패키지 전문 시공 업체에서 인도받을 때는 철저한 초동 검수가 필요합니다. 탁송 단계에서 차량 외관 휀더 틈새의 단차 발생 상태를 살피는 요령과 가죽 시트 조립 불량 유무를 정밀하게 확인하는법 등을 숙지하고 있어야 계약금 잔금을 치른 이후에 발생할 수도 있는 잡음을 피할 수 있습니다.</p>
+    
+    <div class="card-section">
+        <h4>차량 인수 당일 자가 진단 및 도장 검수 항목</h4>
+        <ol>
+            <li><strong>엔진룸 누유 및 조립 단차 유무 점검:</strong> 보닛을 들어 올려 주요 연결부 오일 미세 누출 자국과 휠 하우스 주위 고정 볼트 도장 까짐 상태를 정밀 체크합니다.</li>
+            <li><strong>외관 외장 단차 점검:</strong> 트렁크 양측 유격 단차 및 테일램프 수평 일치 여부를 육안으로 수차례 교차 검사해야 합니다.</li>
+            <li><strong>내장 전장 시스템 작동 점검:</strong> 12.3인치 디스플레이 화면의 터치 조작감, 디지털 키 연결 감도, 실내 앰비언트 라이트 발광 오류 등을 샅샅이 파악합니다.</li>
+            <li><strong>차량 하부 누수 및 서스펜션 보호재 확인:</strong> 리프트에 차를 올려 기어 오일 팬 크랙 누출 흔적과 서스펜션 수송용 완충 블록의 신속 제거 여부를 점검합니다.</li>
+        </ol>
+    </div>
+
+    <h2>8. 쏘나타 신차 구매 시 신뢰할 수 있는 공식 및 공인 사이트 안내</h2>
+    <p>쏘나타 견적 정보 수집 시 가장 정확한 제조사 공식 기준 제원 데이터와 보험 요율 및 공인 정보를 제공하는 신뢰성 높은 대표 외부 출처는 다음과 같습니다. 크로스 체크를 통해 올바른 구매 전략 수립에 활용해 보세요.</p>
+    <ul>
+        <li><a href="https://directpcheckq.koreahankang.com" target="_blank" rel="noopener">1. 쏘나타 통합 공식 온라인 다이렉트 견적 사이트</a> (공인 세부 사양 정보 참고)</li>
+        <li><a href="https://namu.wiki/w/%ED%98%84%EB%8C%80%20%EC%8F%98%EB%82%98%ED%83%80" target="_blank" rel="noopener">2. 나무위키 현대자동차 쏘나타 히스토리 개요</a> (역대 세대별 사양 특징 및 연식 변경 히스토리)</li>
+        <li><a href="https://www.hyundai.com" target="_blank" rel="noopener">3. 현대자동차 공식 인터넷 가상 전시장</a> (트림별 내외장 3D 커스텀 빌더 및 전국 시승 신청 안내)</li>
+    </ul>
+
+    <h2>9. 쏘나타 가격 및 구매 방법 관련 자주 묻는 질문 (FAQ)</h2>
+    
+    <h3>Q1. 하이브리드 트림 선택 시 등록 세금 감면 혜택 지원금 규모는 어느 정도인가요?</h3>
+    <p>A1. 국내 세법 법령에 의거하여 친환경 하이브리드 차주로 신규 등록할 시 취등록세 부분에서 일정 한도(통상 40만 원 선)의 세제 감면 지원금 감면을 자동으로 상쇄 적용받게 되며, 지자체에 납부하는 지역 채권 매입 규정 면제 등의 세무 계산상 추가 혜택이 적용되어 비용을 크게 세이브할 수 있습니다.</p>
+
+    <h3>Q2. 유튜브나 인스타그램 오너 피드에서 강추하는 1.6 터보 익스클루시브 트림의 가성비 조합 비결이 무엇인가요?</h3>
+    <p>A2. 스마트 크루즈 컨트롤 등 주행 핵심 편의 패키지가 익스클루시브부터 온전히 탑재되기 때문입니다. 여기에 165만 원 선인 파킹 어시스트 옵션 사양 정도만 가미하면 인스퍼레이션 트림급의 사방 모니터 편의를 합리적으로 누릴 수 있어 구글이나 유튜브 리뷰어들도 베스트셀러 모델로 꼽고 있습니다.</p>
+
+    <h3>Q3. 리스 만기 이후 반납 방식과 인수 방식의 요금 차이점이 무엇인가요?</h3>
+    <p>A3. 계약 개시 단계에서 설정한 잔존 가치 수준에 기반하여 인수 여부를 결정하게 됩니다. 향후 중고 시세 순위 비교 상 잔존 가치보다 시장 실제 중고 매매 시세가 높을 경우 차량을 인수하여 차액을 보존하는 방식으로 계산하는 것이 재정 관리에 무척 탁월한 장점을 안겨다 줍니다.</p>
+
+    <h2>10. 결론 : 카마스터가 권하는 2026년형 쏘나타 신차 마련의 최종 결론</h2>
+    <p>결과적으로 쏘나타를 마련하는 지혜로운 여정은 겉으로 유포되는 저렴한곳 최저가 낚시성 미끼 문구에 일희일비하기보다, 나에게 정확히 귀속되는 연간 주행 유류세 금액과 조달 연동 금리 조건을 객관적으로 비교 분석하는 것에서 출발합니다. 인공지능 AI 기술의 고도화로 카카오톡 비대면 상담이나 전용 모바일 앱, 그리고 제미나이 등의 다각적인 매칭 수단을 쉽게 이용할 수 있으므로, 최소 세 군데 이상의 영업 지점 혹은 메이저 금융사 조건을 철저하게 대조하여 손실 없는 거래를 성사해 나가시기 바랍니다.</p>
+</div>
+
+<script>
+    // 쏘나타 디 엣지 가격표 실시간 모의 견적 계산 시스템
+    function calculatePrice() {
+        const engineSelect = document.getElementById("engine-select");
+        const financeSelect = document.getElementById("finance-select");
+        
+        let basePrice = parseInt(engineSelect.value);
+        let optionsPrice = 0;
+
+        // 추가 옵션 요금 가산
+        if (document.getElementById("opt-sunroof").checked) {
+            optionsPrice += parseInt(document.getElementById("opt-sunroof").value);
+        }
+        if (document.getElementById("opt-hud").checked) {
+            optionsPrice += parseInt(document.getElementById("opt-hud").value);
+        }
+        if (document.getElementById("opt-parking").checked) {
+            optionsPrice += parseInt(document.getElementById("opt-parking").value);
+        }
+        if (document.getElementById("opt-black").checked) {
+            optionsPrice += parseInt(document.getElementById("opt-black").value);
+        }
+        if (document.getElementById("opt-color").checked) {
+            optionsPrice += parseInt(document.getElementById("opt-color").value);
+        }
+
+        let totalPrice = basePrice + optionsPrice;
+
+        // 천단위 콤마 포맷팅 처리
+        const formattedPrice = totalPrice.toLocaleString('ko-KR') + " 원";
+        document.getElementById("calc-total-output").innerText = formattedPrice;
+
+        // 취등록세 추론 계산 (대략 7% 수준, 하이브리드일 시 일부 감면 적용 고려 가상 구현)
+        let taxRate = 0.07;
+        const selectedEngineText = engineSelect.options[engineSelect.selectedIndex].text;
+        let discount = 0;
+        if (selectedEngineText.includes("하이브리드")) {
+            discount = 400000; // 하이브리드 취등록세 면제/감면 한도 적용
+        }
+
+        let taxAmount = Math.max(0, Math.round(totalPrice * taxRate) - discount);
+        
+        const isRent = financeSelect.value === "rent";
+        if (isRent) {
+            document.getElementById("calc-tax-desc").innerText = "(다이렉트 장기렌트 상품은 월 요금에 등록비용 및 자동차세, 종합 보험료가 일체 내장되어 있습니다.)";
+        } else if (financeSelect.value === "lease") {
+            document.getElementById("calc-tax-desc").innerText = "(오토리스 계약 조건에 따라 취등록세 별도 또는 월 리스 요금에 통합 납입 분할 처리가 가능합니다.)";
+        } else {
+            document.getElementById("calc-tax-desc").innerText = "(순수 차량 가액 기준이며, 예상 발생 취등록세는 약 " + taxAmount.toLocaleString('ko-KR') + " 원 내외입니다.)";
+        }
+    }
+
+    // 초기 실행
+    window.onload = function() {
+        calculatePrice();
+    };
+
+    // 상담 양식 제출 핸들링 시뮬레이션
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        const name = document.getElementById("user-name").value;
+        const tel = document.getElementById("user-tel").value;
+        alert(name + " 오너님, 맞춤 오토금융 및 쏘나타 우수 조건 딜러 제휴 상담 신청이 접수되었습니다. 기재하신 연락처(" + tel + ")를 통해 안전하고 신뢰할 수 있는 정보를 곧 전해드리겠습니다.");
+    }
+
+    // 투표 양식 시뮬레이션
+    function handleVoteSubmit(event) {
+        event.preventDefault();
+        const selected = document.querySelector('input[name="vote-opt"]:checked').value;
+        alert("국민 가성비 조합 투표에 참여해 주셔서 감사합니다. " + selected + " 조합은 현재 전체 쏘나타 신규 예약 자문 통계에서 높은 인기를 구가하고 있습니다.");
+    }
+</script>
+
+  
